@@ -1,7 +1,5 @@
 name: test-html2pdf-bullseye
-
 on: [push, pull_request]
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -10,12 +8,11 @@ jobs:
       - name: Install and test plutoprint
         run: |
           apt-get update && apt-get install -y --no-install-recommends python3-pip
-          pip3 install plutoprint
+          pip3 install -v plutoprint
           python3 -m plutoprint --info
-          
+
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Extract and run
         run: |
           tar -xzf plutobook-linux-x64.tar.gz
