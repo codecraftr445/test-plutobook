@@ -3,12 +3,15 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: debian:bullseye
+    container: debian:bullseye-slim
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Extract and run
         run: |
+          apt-get update
+          apt-get install -y --no-install-recommends ca-certificates
+
           tar -xzf plutobook-linux-x64.tar.gz
           chmod +x plutobook-linux-x64/tools/html2pdf
           ./plutobook-linux-x64/tools/html2pdf https://en.wikipedia.org/wiki/Bjarne_Stroustrup hello.pdf
@@ -19,3 +22,4 @@ jobs:
           name: hello-pdf
           path: hello.pdf
           if-no-files-found: error
+          
