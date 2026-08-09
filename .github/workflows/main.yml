@@ -10,7 +10,7 @@ jobs:
       - name: Extract and run
         run: |
           apt-get update
-          apt-get install -y --no-install-recommends ca-certificates
+          apt-get install -y --no-install-recommends fontconfig ca-certificates
 
           tar -xzf plutobook-linux-x64.tar.gz
           chmod +x plutobook-linux-x64/tools/html2pdf
