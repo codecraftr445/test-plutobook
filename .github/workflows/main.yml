@@ -7,6 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     container: debian:bullseye-slim
     steps:
+      - name: Install and test plutoprint
+        run: |
+          apt-get update && apt-get install -y --no-install-recommends python3-pip
+          pip3 install plutoprint
+          python3 -m plutoprint --info
+          
       - name: Checkout
         uses: actions/checkout@v4
 
