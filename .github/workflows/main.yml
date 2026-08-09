@@ -1,0 +1,24 @@
+name: test-html2pdf-bullseye
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: debian:bullseye-slim
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          artifact-ids: 9035522690
+          run-id: 31304016323
+          repository: plutoprint/plutobook
+          github-token: ${{ secrets.GH_TOKEN }}
+
+      - name: Extract and run
+        run: |
+          tar -xzf plutobook-linux-x64.tar.gz
+          find . -name html2pdf   # locate it in case there's a subdir
+          cd "$(dirname "$(find . -name html2pdf | head -1)")"
+          chmod +x html2pdf
+          ./html2pdf --info
