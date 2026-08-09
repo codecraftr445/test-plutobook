@@ -15,6 +15,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Extract and run
         run: |
+          apt-get update
+          apt-get install -y --no-install-recommends libexpat1
+          
           tar -xzf plutobook-linux-x64.tar.gz
           chmod +x plutobook-linux-x64/tools/html2pdf
           ./plutobook-linux-x64/tools/html2pdf --info
