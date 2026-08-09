@@ -6,7 +6,9 @@ jobs:
     container: python:3.10-slim-bullseye
     steps:
       - name: Install plutoprint
-        run: pip install -v plutoprint
+        run: |
+          pip install --upgrade pip
+          pip install -v --no-cache-dir --retries 5 plutoprint
 
       - name: Run plutoprint
         run: |
