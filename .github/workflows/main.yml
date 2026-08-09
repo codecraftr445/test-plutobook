@@ -10,8 +10,15 @@ jobs:
       - name: Extract and run
         run: |
           apt-get update
-          apt-get install -y --no-install-recommends libexpat1
-          
+          apt-get install -y --no-install-recommends libexpat1 ca-certificates
+
           tar -xzf plutobook-linux-x64.tar.gz
           chmod +x plutobook-linux-x64/tools/html2pdf
-          ./plutobook-linux-x64/tools/html2pdf --info
+          ./plutobook-linux-x64/tools/html2pdf https://en.wikipedia.org/wiki/Bjarne_Stroustrup hello.pdf
+
+      - name: Upload hello.pdf
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-pdf
+          path: hello.pdf
+          if-no-files-found: error
