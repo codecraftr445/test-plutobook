@@ -15,13 +15,6 @@ jobs:
           tar -xzf plutobook-linux-x64.tar.gz
           chmod +x plutobook-linux-x64/tools/html2pdf
           ./plutobook-linux-x64/tools/html2pdf https://en.wikipedia.org/wiki/Bjarne_Stroustrup hello.pdf
-
-      - name: Upload fonts.tar.gz
-        uses: actions/upload-artifact@v4
-        with:
-          name: fonts
-          path: fonts.tar.gz
-          if-no-files-found: error
           
       - name: Upload hello.pdf
         uses: actions/upload-artifact@v4
