@@ -10,6 +10,9 @@ jobs:
 
       - name: Run plutoprint
         run: |
+          apt-get update
+          apt-get install -y --no-install-recommends libexpat1
+          
           python -m plutoprint --info
           python -m plutoprint https://en.wikipedia.org/wiki/Bjarne_Stroustrup hello.pdf
 
