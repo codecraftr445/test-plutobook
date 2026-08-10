@@ -1,21 +1,18 @@
-name: test-html2pdf-bullseye
+name: test-plutoprint-py310-bullseye
 on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: debian:bullseye-slim
+    container: python:3.10-slim-bullseye
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Extract and run
+      - name: Install plutoprint
+        run: pip install -v --no-cache-dir plutoprint
+
+      - name: Run plutoprint
         run: |
-          apt-get update
-          apt-get install -y --no-install-recommends ca-certificates
-          
-          tar -xzf plutobook-linux-x64.tar.gz
-          chmod +x plutobook-linux-x64/tools/html2pdf
-          ./plutobook-linux-x64/tools/html2pdf https://en.wikipedia.org/wiki/Bjarne_Stroustrup hello.pdf
-          
+          python -m plutoprint --info
+          python -m plutoprint https://en.wikipedia.org/wiki/Bjarne_Stroustrup hello.pdf
+
       - name: Upload hello.pdf
         uses: actions/upload-artifact@v4
         with:
