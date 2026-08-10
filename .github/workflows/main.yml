@@ -3,14 +3,14 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: debian:bullseye-slim
+    container: python:3.10-slim-bullseye
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Extract and run
         run: |
-          apt-get update
-          apt-get install -y --no-install-recommends fontconfig ca-certificates
+          #apt-get update
+          #apt-get install -y --no-install-recommends fontconfig ca-certificates
 
           tar -xzf plutobook-linux-x64.tar.gz
           chmod +x plutobook-linux-x64/tools/html2pdf
