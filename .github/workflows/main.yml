@@ -10,14 +10,8 @@ jobs:
       - name: Extract and run
         run: |
           apt-get update
-          apt-get install -y --no-install-recommends fontconfig ca-certificates
-
-          mkdir -p fonts/
-          cp -rL /etc/fonts/* fonts/
-
-          tar -czhvf fonts.tar.gz fonts/
-
-
+          apt-get install -y --no-install-recommends ca-certificates
+          
           tar -xzf plutobook-linux-x64.tar.gz
           chmod +x plutobook-linux-x64/tools/html2pdf
           ./plutobook-linux-x64/tools/html2pdf https://en.wikipedia.org/wiki/Bjarne_Stroustrup hello.pdf
